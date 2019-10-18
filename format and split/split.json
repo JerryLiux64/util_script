@@ -1,0 +1,4 @@
+{
+	"split":["bicycle", "person","car"],
+	"split1":["train", "motorbike", "bus"]
+}
