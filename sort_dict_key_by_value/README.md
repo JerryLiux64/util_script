@@ -5,3 +5,5 @@ Script to extract 'key' from a dict of {key: number}.
     B
     A
 
+Usage:
+./sort_dict_key_by_value.py sample.json .
