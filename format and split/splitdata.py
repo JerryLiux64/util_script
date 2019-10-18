@@ -9,7 +9,7 @@ import sys
 import json
 from os.path import join as join_path
 from random import shuffle
-from tqdm import tqdm
+# from tqdm import tqdm # tqdm for progress bar
 
 
 logging.basicConfig(level=logging.INFO,
@@ -33,15 +33,17 @@ def formatdata(data_dir=''):
 	if not data_dir:
 		logger.error("data_dir not set.")
 
-	source_dir = join_path(data_dir, "VOCdevkit/VOC2012")
+	source_dir = data_dir
 	target_dir = join_path(data_dir, "formatted")
 
 
 	suffix = '_trainval.txt'
-	classes_dir = join_path(source_dir, "ImageSets", "Main")
-	images_dir = join_path(source_dir, "JPEGImages")
+	classes_dir = join_path(source_dir, "")
+	images_dir = join_path(source_dir, "images")
 	classes_files = glob.glob(classes_dir+"/*"+suffix)
-	for file in tqdm(classes_files):
+
+	# for file in tqdm(classes_files):
+	for file in classes_files:
 		# get the filename and make output class folder
 		classname = os.path.basename(file)
 		if classname.endswith(suffix):
@@ -88,7 +90,7 @@ def splitdata(split_dir, cls, data_dir):
 
 		img_list = glob.glob(os.path.join(SOURCE_DIR, dir_i, '*.jpg'))
 		# shuffle data
-		# shuffle(img_list)
+		shuffle(img_list)
 
 		for j in range(int(len(img_list)*0.7)):
 				shutil.copy2(img_list[j], os.path.join(TARGET_DIR, 'train', dir_i))
@@ -127,7 +129,8 @@ if __name__ == "__main__":
 	logger.info("Formatting dataset...")
 	formatdata(data_dir)
 	logger.info("Splitting dataset...")
-	for key in tqdm(content.keys()):
+	# for key in tqdm(content.keys()):
+	for key in content.keys():
 		splitdata(key, content[key], data_dir)
 
 
