@@ -1,4 +1,5 @@
 Split dataset into ['train', 'test', 'val'].
+
     This script does two things, formatting dataset and splitting dataset.
     Format dataset takes a directory containing two folders,
     one contains all the images (Ex:sample/images),
@@ -12,4 +13,5 @@ Split dataset into ['train', 'test', 'val'].
 
 
 Usage:
-./splitdata.py split.json -d sample/
+
+    ./splitdata.py split.json -d sample/
